@@ -1,6 +1,6 @@
 # Restaurant QR SaaS
 
-Basic project setup with a React frontend and an Express backend.
+Basic project setup with a universal Expo frontend and an Express backend.
 
 ## Frontend
 
@@ -9,6 +9,8 @@ cd frontend
 npm install
 npm run dev
 ```
+
+Use `npm run web`, `npm run android`, or `npm run ios` to run the same frontend code on each platform.
 
 ## Backend
 
