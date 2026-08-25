@@ -33,6 +33,12 @@ For a beginner-friendly command handbook, see [Ordino Git & GitHub Workflow PDF]
 ```text
 ordino/
 ├── frontend/
+│   └── src/modules/auth/
 ├── backend/
+│   └── src/modules/auth/
 └── docs/
 ```
+
+The authentication folders currently contain modular contracts and placeholders only.
+Database access, password handling, tokens, validation, and real authentication behavior
+will be implemented in later steps.
