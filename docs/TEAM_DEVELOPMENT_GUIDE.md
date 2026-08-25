@@ -1,416 +1,429 @@
-# Restaurant QR SaaS — Team Development Guide
+# Ordino — Team Development Guide
 
-This is the shared working agreement for the Restaurant QR SaaS project. Keep it updated whenever ownership, workflow, architecture decisions, or milestone status changes.
+This is the shared working agreement for the Ordino Restaurant QR SaaS project. Pawan Kshetri and Himani Singwal should update this document whenever workflow, ownership, decisions, or milestone status changes.
 
 > Current milestone: **Phase 1 — Authentication foundation**
 >
-> Integration branch: **`develop`**
+> Permanent branch flow: **`develop` → `staging` → `main`**
 >
-> Production branch: **`main`**
+> Branch limit: **Exactly three permanent branches; no feature branches**
+
+## Visual workflow
+
+![Ordino three-branch team workflow](assets/ordino-team-workflow.png)
 
 ## 1. Team ownership
 
 | Area | Primary owner | Reviewer / collaborator |
 | --- | --- | --- |
-| Universal frontend: web, Android, and iOS | Pawan Kshetri | Himani Singwal |
+| Universal frontend for web, Android, and iOS | Pawan Kshetri | Himani Singwal |
 | Backend APIs and server | Himani Singwal | Pawan Kshetri |
 | Database design, migrations, and data integrity | Himani Singwal | Pawan Kshetri |
 | API contracts and integration decisions | Both developers | Both developers |
-| Release verification and documentation | Both developers | Both developers |
+| Staging verification and production release | Both developers | Both developers |
+| Documentation and shared project configuration | Both developers | Both developers |
 
-Ownership means the named developer leads that area. It does not prevent the other developer from reviewing, discussing, or contributing through a pull request.
-
-### Code ownership by path
+### Primary code paths
 
 | Path | Primary owner |
 | --- | --- |
 | `frontend/**` | Pawan Kshetri |
 | `backend/**` | Himani Singwal |
 | Future database and migration files | Himani Singwal |
-| `docs/**` and root project files | Both developers |
+| `docs/**` and root configuration | Both developers |
 
-## 2. Branch strategy
+Ownership identifies the lead developer. Shared decisions still require discussion and review from both developers.
 
-### Permanent branches
+## 2. Exactly three branches
 
-- `main`: stable production-ready code only.
-- `develop`: combined and tested development work for the next release.
+| Branch | Purpose | Who works directly on it? |
+| --- | --- | --- |
+| `develop` | Daily frontend, backend, database, and documentation work | Pawan and Himani |
+| `staging` | Integrated milestone testing | No direct work; receives PRs from `develop` |
+| `main` | Stable production-ready releases | No direct work; receives PRs from `staging` |
 
-Never develop directly on `main` or `develop`. Every task gets a short-lived branch created from the latest `develop`.
+### Non-negotiable rules
 
-### Task branch names
-
-Use lowercase names with hyphens:
-
-```text
-feat/frontend-auth
-feat/backend-auth-api
-feat/database-auth-schema
-fix/frontend-login-validation
-fix/backend-auth-response
-docs/team-workflow
-chore/update-dependencies
-```
-
-Use one branch for one focused task. Do not mix frontend, backend, database, and unrelated fixes in a single pull request.
+- Do not create feature, personal, frontend, backend, or hotfix branches.
+- Both developers commit directly to `develop` after pulling the latest changes.
+- Never push code directly to `staging` or `main`.
+- Move code from `develop` to `staging` only through a pull request.
+- Move code from `staging` to `main` only through a pull request.
+- Fix staging or production problems on `develop`, then promote the fix through the same flow.
+- Never force-push any of the three branches.
+- Never delete `develop`, `staging`, or `main`.
 
 ```mermaid
 flowchart LR
-    M[main: stable production] --> D[develop: integration]
-    D --> PF[feat/frontend-auth]
-    D --> HB[feat/backend-auth-api]
-    D --> HD[feat/database-auth-schema]
-    PF -->|Pull request| D
-    HB -->|Pull request| D
-    HD -->|Pull request| D
-    D -->|Release pull request after verification| M
+    D[develop: daily work] -->|Pull request| S[staging: testing and integration]
+    S -->|Pull request| M[main: stable production]
 ```
 
-## 3. One-time GitHub setup
+## 3. One-time repository setup
 
-The repository owner performs these steps once from the project root:
-
-```bash
-gh auth login
-gh repo create restaurant-qr-saas --source=. --remote=origin
-git push -u origin main
-git push -u origin develop
-```
-
-During repository creation, choose public or private as agreed by the team. Then:
-
-1. Add the second developer as a GitHub collaborator.
-2. Protect both `main` and `develop` in GitHub repository settings.
-3. Require pull requests before merging.
-4. Require at least one approval.
-5. Disable force pushes and branch deletion for permanent branches.
-6. Add required automated checks when CI is introduced.
-
-The second developer clones the repository and switches to `develop`:
-
-```bash
-git clone <repository-url>
-cd restaurant-qr-saas
-git switch develop
-git pull --ff-only origin develop
-```
-
-## 4. Daily development workflow
-
-### A. Start a new task
-
-Always begin from an updated `develop`:
+The repository owner creates `staging` once from the latest `develop`:
 
 ```bash
 git switch develop
 git pull --ff-only origin develop
-git switch -c feat/frontend-auth
+git switch -c staging
+git push -u origin staging
+git switch develop
 ```
 
-Himani uses the relevant backend or database branch name instead:
+Then configure GitHub:
+
+1. Keep `main` as the default branch.
+2. Add both developers as collaborators.
+3. Protect `staging` and `main`.
+4. Require pull requests and at least one approval for `staging` and `main`.
+5. Disable force pushes and branch deletion for all three branches.
+6. Allow both collaborators to push normal commits to `develop`.
+7. Enable required automated checks when CI is introduced.
+8. Allow **Create a merge commit** for promotion pull requests.
+
+The second developer clones the repository and prepares all three local branches:
+
+```bash
+git clone https://github.com/Pawankshetri11/Ordino.git
+cd Ordino
+git switch develop
+git pull --ff-only origin develop
+git switch --track origin/staging
+git switch develop
+```
+
+## 4. Daily workflow on `develop`
+
+Both developers follow the same sequence. Pawan normally changes `frontend/**`; Himani normally changes `backend/**` and database files.
+
+### Step 1 — Update before coding
 
 ```bash
 git switch develop
-git pull --ff-only origin develop
-git switch -c feat/backend-auth-api
+git pull --rebase origin develop
+git status
 ```
 
-### B. Work and commit
+Do not begin coding until the pull succeeds and the working tree state is understood.
 
-Before committing, inspect exactly what will be included:
+### Step 2 — Work only in your owned area
+
+- Pawan communicates before changing backend or database code.
+- Himani communicates before changing frontend code.
+- Both communicate before editing the same documentation or root configuration file.
+- Keep one main task in progress per developer.
+
+### Step 3 — Inspect and commit focused changes
 
 ```bash
 git status
 git diff
 git add <specific-files>
 git diff --staged
-git commit -m "feat(frontend): add authentication screen"
+git commit -m "feat(frontend): add login screen"
 ```
 
-Recommended commit formats:
+Recommended commit messages:
 
 ```text
 feat(frontend): add login screen
 feat(backend): add authentication endpoint
 feat(database): add authentication schema
-fix(frontend): show login validation error
+fix(frontend): handle invalid login response
 fix(backend): reject invalid credentials
 docs: update authentication contract
 chore: update development dependency
 ```
 
-Create small commits that describe one logical change. Never commit `.env` files, passwords, tokens, private keys, database credentials, or generated dependency folders.
+### Step 4 — Update again before pushing
 
-### C. Push the task branch
-
-The first push sets the upstream branch:
+Another developer may have pushed while you were coding:
 
 ```bash
-git push -u origin feat/frontend-auth
+git pull --rebase origin develop
 ```
 
-Later pushes only need:
+If the rebase succeeds, run the relevant local verification and push:
 
 ```bash
-git push
+git push origin develop
 ```
 
-### D. Open a pull request
-
-Every feature branch targets `develop`, never `main`:
+If Git rejects the push because `develop` changed, repeat:
 
 ```bash
-gh pr create --base develop --head feat/frontend-auth
-```
-
-The pull request must explain:
-
-- What changed.
-- Why it changed.
-- How it was verified.
-- Any API or database impact.
-- Screenshots for visible frontend changes.
-- Follow-up work that is intentionally not included.
-
-### E. Review and merge
-
-1. The other developer reviews the pull request.
-2. The author resolves requested changes on the same feature branch.
-3. Automated checks and manual verification must pass.
-4. Use **Squash and merge** into `develop`.
-5. Delete the merged feature branch from GitHub.
-6. Both developers update their local `develop`.
-
-```bash
-git switch develop
-git pull --ff-only origin develop
+git pull --rebase origin develop
+git push origin develop
 ```
 
 ```mermaid
 flowchart TD
-    A[Pick one task] --> B[Update local develop]
-    B --> C[Create task branch]
-    C --> D[Code and verify locally]
-    D --> E[Commit focused changes]
-    E --> F[Push task branch]
-    F --> G[Open PR into develop]
-    G --> H[Other developer reviews]
-    H --> I{Changes requested?}
-    I -->|Yes| D
-    I -->|No| J[Squash merge into develop]
-    J --> K[Delete task branch and pull develop]
+    A[Switch to develop] --> B[Pull with rebase]
+    B --> C[Work in owned project area]
+    C --> D[Review changed files]
+    D --> E[Commit focused change]
+    E --> F[Pull with rebase again]
+    F --> G{Conflict?}
+    G -->|Yes| H[Resolve, verify, and continue rebase]
+    H --> I[Push develop]
+    G -->|No| I
 ```
 
-## 5. Keeping a feature branch updated
+## 5. Resolving a `develop` conflict
 
-If `develop` changes while a feature is in progress, bring those changes into the feature branch before final review:
+When `git pull --rebase origin develop` reports a conflict:
+
+1. Run `git status` and identify each conflicted file.
+2. Discuss shared API or configuration conflicts together.
+3. Edit the file and remove all conflict markers.
+4. Stage the resolved file and continue the rebase.
 
 ```bash
 git status
-git fetch origin
-git merge origin/develop
+git add <resolved-files>
+git rebase --continue
 ```
 
-If conflicts occur:
-
-1. Read each conflicted file carefully.
-2. Discuss shared API or contract conflicts together.
-3. Remove conflict markers after choosing the correct combined code.
-4. Verify the project again.
-5. Commit and push the resolution.
+After the rebase completes:
 
 ```bash
-git add <resolved-files>
-git commit -m "chore: resolve develop merge conflicts"
-git push
+git status
+git push origin develop
 ```
 
-Do not force-push shared branches. Do not use destructive Git commands to hide or discard a conflict.
+If the resolution is incorrect or unclear, safely stop the rebase and discuss it:
 
-## 6. Authentication milestone workflow
+```bash
+git rebase --abort
+```
 
-Frontend and backend authentication work can happen in parallel only after both developers agree on the contract.
+Never use force push to solve a shared-branch conflict.
+
+## 6. Promotion from `develop` to `staging`
+
+Promote only a complete, agreed milestone or testable milestone slice.
+
+1. Both developers finish and push their milestone work to `develop`.
+2. Confirm `develop` builds and the agreed checks pass.
+3. Open a pull request with base `staging` and compare `develop`.
+4. The other developer reviews the combined frontend/backend impact.
+5. Merge using **Create a merge commit**.
+6. Test only the promoted snapshot on `staging`.
+
+GitHub CLI command:
+
+```bash
+gh pr create --base staging --head develop --title "release: promote develop to staging"
+```
+
+If staging testing finds a bug, do not edit `staging`. Fix it on `develop`, push it, and promote `develop` to `staging` again.
+
+## 7. Promotion from `staging` to `main`
+
+Promote only after both developers accept staging verification.
+
+1. Confirm the staging checklist is complete.
+2. Open a pull request with base `main` and compare `staging`.
+3. Both developers review the release summary.
+4. Merge using **Create a merge commit**.
+5. Confirm `main` contains only stable, production-ready work.
+
+GitHub CLI command:
+
+```bash
+gh pr create --base main --head staging --title "release: promote staging to main"
+```
 
 ```mermaid
 flowchart TD
-    A[Agree on authentication requirements] --> B[Write request, response, and error contract]
-    B --> C1[Pawan: frontend auth flow]
-    B --> C2[Himani: backend auth API]
-    B --> C3[Himani: database auth design]
-    C2 --> D[Backend and database integration]
-    C3 --> D
-    C1 --> E[Frontend and backend integration]
-    D --> E
-    E --> F[Security and end-to-end verification]
-    F --> G[Merge milestone into develop]
+    D[develop milestone ready] --> C1{Local checks pass?}
+    C1 -->|No| D
+    C1 -->|Yes| PR1[PR: develop to staging]
+    PR1 --> S[Staging verification]
+    S --> C2{Both approve?}
+    C2 -->|No: fix on develop| D
+    C2 -->|Yes| PR2[PR: staging to main]
+    PR2 --> M[Stable production release]
 ```
 
-### Contract agreement before coding
+## 8. Authentication-first development plan
 
-Record and agree on each item before implementation begins:
+Frontend and backend authentication work happens in parallel on the shared `develop` branch only after both developers agree on the contract.
 
-- Authentication method and session strategy.
-- Required user fields and validation rules.
-- User roles and permissions required for the first milestone.
-- Endpoint method and path.
-- Request body shape.
-- Success response shape.
-- Error status codes and response shape.
-- Frontend session persistence behavior for web, Android, and iOS.
-- Logout and expired-session behavior.
-- Security requirements and secrets that must stay server-side.
+### Shared contract decisions
 
-Do not allow the frontend and backend to invent different request or response formats independently.
-
-### Phase 1 task checklist
-
-#### Shared decisions
-
-- [ ] Agree on the exact authentication scope for version one.
-- [ ] Agree on the API request, success response, and error response formats.
-- [ ] Decide the database and migration approach together.
+- [ ] Define authentication scope for the first version.
+- [ ] Define required user fields and validation rules.
+- [ ] Agree on endpoint paths and HTTP methods.
+- [ ] Agree on request, success response, and error response shapes.
+- [ ] Decide user roles required in the first milestone.
+- [ ] Decide the database and migration approach.
 - [ ] Decide how sessions are created, stored, refreshed, expired, and revoked.
+- [ ] Decide logout and expired-session behavior for web, Android, and iOS.
 - [ ] Record decisions in the decision log below.
 
-#### Pawan Kshetri — frontend
+### Pawan Kshetri — frontend
 
-- [ ] Create the authentication branch from updated `develop`.
-- [ ] Build shared login UI for web, Android, and iOS.
-- [ ] Add frontend validation based on the agreed contract.
-- [ ] Add loading, success, and error states.
-- [ ] Integrate only with the agreed backend contract.
-- [ ] Verify behavior on the supported frontend targets.
-- [ ] Open a focused pull request into `develop`.
+- [ ] Build shared authentication UI for web, Android, and iOS.
+- [ ] Add validation based only on the agreed API contract.
+- [ ] Add loading, success, error, logout, and expired-session states.
+- [ ] Integrate with the real backend after the contract is available.
+- [ ] Verify the supported frontend targets.
+- [ ] Commit only frontend-focused changes to `develop`.
 
-#### Himani Singwal — backend and database
+### Himani Singwal — backend and database
 
-- [ ] Create separate focused backend/database branches from updated `develop`.
 - [ ] Design the minimum authentication data model.
-- [ ] Add database changes through reviewed migrations when the database stack is chosen.
-- [ ] Implement validation and authentication endpoints based on the agreed contract.
-- [ ] Keep secrets and credential handling on the backend.
-- [ ] Add backend tests for success and failure cases when the test setup is introduced.
-- [ ] Open focused pull requests into `develop`.
+- [ ] Introduce database configuration and migrations only after the stack decision is recorded.
+- [ ] Implement backend validation and authentication endpoints.
+- [ ] Keep secrets and credential handling entirely server-side.
+- [ ] Add backend tests when the test setup is introduced.
+- [ ] Commit focused backend/database changes to `develop`.
 
-#### Joint integration
+### Joint integration
 
-- [ ] Merge reviewed backend/database work into `develop`.
-- [ ] Update the frontend branch with the latest `develop`.
-- [ ] Verify real frontend-to-backend authentication behavior.
-- [ ] Verify unauthorized, invalid, expired, and logout flows.
-- [ ] Update documentation before closing the milestone.
+- [ ] Pull the latest combined `develop`.
+- [ ] Verify frontend-to-backend authentication behavior.
+- [ ] Verify invalid, unauthorized, expired, and logout flows.
+- [ ] Update this guide and the API contract.
+- [ ] Promote the completed auth milestone to `staging`.
 
-## 7. Incremental product roadmap
+```mermaid
+flowchart TD
+    A[Agree authentication contract] --> P[Pawan builds universal frontend auth]
+    A --> H1[Himani builds backend auth API]
+    A --> H2[Himani designs auth database changes]
+    H1 --> I[Integrate on develop]
+    H2 --> I
+    P --> I
+    I --> S[Promote to staging and verify]
+    S --> M[Promote stable auth to main]
+```
 
-Build one verified milestone at a time. Do not start later SaaS features while the current milestone is unstable.
+## 9. Incremental product roadmap
+
+Finish and stabilize one phase before starting the next major phase.
 
 | Phase | Goal | Frontend lead | Backend/database lead | Exit condition |
 | --- | --- | --- | --- | --- |
-| 0 | Basic universal frontend and Express backend | Pawan | Himani | Projects run and repository workflow is ready |
-| 1 | Authentication foundation | Pawan | Himani | Agreed auth flows work end to end |
+| 0 | Universal frontend, Express backend, and team workflow | Pawan | Himani | Three branches and collaboration workflow are ready |
+| 1 | Authentication foundation | Pawan | Himani | Agreed authentication works end to end |
 | 2 | Restaurant onboarding and team access | Pawan | Himani | Restaurant and initial roles can be managed safely |
 | 3 | Menu management | Pawan | Himani | Menu data can be created, edited, and displayed |
-| 4 | QR and public menu experience | Pawan | Himani | A QR link opens the correct public restaurant menu |
+| 4 | QR and public menu experience | Pawan | Himani | QR link opens the correct public restaurant menu |
 | 5 | Ordering and kitchen workflow | Pawan | Himani | An order moves through the agreed lifecycle |
-| 6 | Payments, analytics, CRM, and subscriptions | Pawan | Himani | Each capability is delivered as its own reviewed milestone |
+| 6 | Payments, analytics, CRM, and subscriptions | Pawan | Himani | Each capability is delivered as a separate tested milestone |
 
 ```mermaid
 flowchart LR
-    P0[Phase 0: Foundation] --> P1[Phase 1: Authentication]
-    P1 --> P2[Phase 2: Restaurant onboarding]
-    P2 --> P3[Phase 3: Menu management]
-    P3 --> P4[Phase 4: QR and public menu]
-    P4 --> P5[Phase 5: Ordering and kitchen]
-    P5 --> P6[Phase 6: Payments and growth features]
+    P0[Foundation] --> P1[Authentication]
+    P1 --> P2[Restaurant onboarding]
+    P2 --> P3[Menu management]
+    P3 --> P4[QR and public menu]
+    P4 --> P5[Ordering and kitchen]
+    P5 --> P6[Payments and growth]
 ```
 
-## 8. Pull request checklist
+## 10. Staging checklist
 
-Copy this checklist into each pull request:
+Before `staging` can move to `main`:
 
-```text
-## Summary
-- What changed:
-- Why:
+- [ ] Frontend type checks and supported builds pass.
+- [ ] Backend build and relevant tests pass.
+- [ ] Database migrations are reviewed and tested when introduced.
+- [ ] Frontend and backend contract matches.
+- [ ] Important success and failure paths are verified.
+- [ ] No credentials, tokens, `.env` files, or private data are committed.
+- [ ] Documentation reflects the actual behavior.
+- [ ] Both developers approve the release.
 
-## Ownership
-- Area: frontend / backend / database / documentation
-- Primary developer:
-- Reviewer:
-
-## Verification
-- [ ] Changes are limited to one task
-- [ ] TypeScript/build checks pass
-- [ ] Relevant manual behavior was verified
-- [ ] API/database impact is documented
-- [ ] No secrets or generated dependency folders are committed
-- [ ] Branch is updated with develop
-
-## Evidence
-- Commands run:
-- Screenshots or response examples:
-
-## Follow-up
-- Intentionally excluded work:
-```
-
-## 9. Definition of done
+## 11. Definition of done
 
 A task is done only when:
 
 - The agreed acceptance criteria are met.
-- The change is focused and understandable.
+- Changes are focused and committed with a clear message.
+- The latest `develop` was pulled before pushing.
 - Relevant type checks, builds, and tests pass.
-- No credentials or private data are committed.
+- No secrets or generated dependency folders are committed.
 - API or database behavior is documented when changed.
-- The other developer has reviewed and approved it.
-- The pull request is merged into `develop`.
-- The task branch is deleted and local `develop` is updated.
+- The other developer knows the change has reached `develop`.
 
-## 10. Release flow
+A milestone is done only after it is verified on `staging` and promoted to `main` through a reviewed pull request.
 
-When the selected milestone is stable on `develop`:
+## 12. Shared progress board
 
-1. Stop adding unrelated features to that release.
-2. Run frontend, backend, integration, and migration verification.
-3. Open a pull request from `develop` into `main`.
-4. Both developers review the release summary.
-5. Merge only when the release is production-ready.
-6. Tag the release when versioning begins.
-7. Continue new work from the updated `develop` branch.
+Keep one main task in progress per developer.
 
-Emergency production fixes use a branch created from `main`, such as `hotfix/auth-session-expiry`. After merging the fix into `main`, merge the same fix back into `develop`.
-
-## 11. Shared progress board
-
-Keep only one main task in progress per developer to reduce unfinished work.
-
-| Task | Owner | Branch | Status | PR |
+| Task | Owner | Working branch | Status | Promotion |
 | --- | --- | --- | --- | --- |
-| Agree on authentication contract | Both | `docs/auth-contract` | Planned | — |
-| Frontend authentication foundation | Pawan | `feat/frontend-auth` | Planned | — |
-| Backend authentication API | Himani | `feat/backend-auth-api` | Planned | — |
-| Authentication database design | Himani | `feat/database-auth-schema` | Planned | — |
-| Authentication integration | Both | Created when ready | Blocked by contract | — |
+| Agree on authentication contract | Both | `develop` | Planned | `develop` → `staging` |
+| Frontend authentication foundation | Pawan | `develop` | Planned | Included in auth milestone |
+| Backend authentication API | Himani | `develop` | Planned | Included in auth milestone |
+| Authentication database design | Himani | `develop` | Planned | Included in auth milestone |
+| Authentication integration | Both | `develop` | Blocked by contract | Included in auth milestone |
 
 Allowed statuses: `Planned`, `Ready`, `In progress`, `In review`, `Blocked`, and `Done`.
 
-## 12. Decision log
+## 13. Decision log
 
-Record decisions that affect both frontend and backend. Do not rely only on chat messages.
+Record shared decisions here instead of relying only on chat messages.
 
 | Date | Decision | Reason | Owners |
 | --- | --- | --- | --- |
-| 2026-08-25 | Use Expo, React Native, and TypeScript for one universal frontend codebase | Share frontend code across web, Android, and iOS | Pawan and Himani |
-| 2026-08-25 | Use `develop` for integration and `main` for stable production code | Keep unfinished work away from production | Pawan and Himani |
+| 2026-08-25 | Use Expo, React Native, and TypeScript for one universal frontend | Share code across web, Android, and iOS | Pawan and Himani |
+| 2026-08-25 | Keep exactly `develop`, `staging`, and `main` | Simple sequential workflow for two developers | Pawan and Himani |
+| 2026-08-25 | Allow daily work only on `develop` | Avoid feature-branch overhead | Pawan and Himani |
+| 2026-08-25 | Require PRs for `develop` → `staging` → `main` | Protect testing and production branches | Pawan and Himani |
 | TBD | Authentication and session strategy | Must be agreed before auth implementation | Pawan and Himani |
 | TBD | Database and migration stack | Must be agreed before database implementation | Pawan and Himani |
 
-## 13. Communication rules
+## 14. Quick command reference
 
-- Discuss shared contracts before coding dependent work.
-- Put final decisions in this guide or a linked project document.
-- Mention the exact branch and pull request when asking for review.
-- Raise blockers early; do not silently change an agreed API contract.
-- Keep pull requests small enough for the other developer to review carefully.
+### Daily start
+
+```bash
+git switch develop
+git pull --rebase origin develop
+git status
+```
+
+### Daily commit and push
+
+```bash
+git add <specific-files>
+git commit -m "feat(scope): clear message"
+git pull --rebase origin develop
+git push origin develop
+```
+
+### Promote to staging
+
+```bash
+gh pr create --base staging --head develop --title "release: promote develop to staging"
+```
+
+### Promote to main
+
+```bash
+gh pr create --base main --head staging --title "release: promote staging to main"
+```
+
+### Check current state
+
+```bash
+git status
+git branch -vv
+git log --oneline --decorate -10
+```
+
+## 15. Communication rules
+
+- Tell the other developer before changing a shared contract or shared file.
+- Pull `develop` before coding and again before pushing.
+- Keep commits small and scoped to the owned area.
+- Do not silently change API request or response formats.
+- Report the commit hash when asking the other developer to review work.
+- Record final architecture decisions in this guide.
 - Review the progress board together at the start or end of each working session.

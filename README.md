@@ -24,7 +24,7 @@ The backend health check is available at `GET /api/health`.
 
 ## Team workflow
 
-See [Team Development Guide](docs/TEAM_DEVELOPMENT_GUIDE.md) for ownership, Git branches, pull requests, authentication planning, flowcharts, and the phased roadmap.
+See [Team Development Guide](docs/TEAM_DEVELOPMENT_GUIDE.md) for the `develop` → `staging` → `main` workflow, daily Git commands, ownership, authentication planning, visual flowcharts, and the phased roadmap.
 
 ## Project structure
 
