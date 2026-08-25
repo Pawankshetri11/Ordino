@@ -26,6 +26,8 @@ The backend health check is available at `GET /api/health`.
 
 See [Team Development Guide](docs/TEAM_DEVELOPMENT_GUIDE.md) for the `develop` → `staging` → `main` workflow, daily Git commands, ownership, authentication planning, visual flowcharts, and the phased roadmap.
 
+For a beginner-friendly command handbook, see [Ordino Git & GitHub Workflow PDF](output/pdf/ORDINO_GIT_GITHUB_WORKFLOW_GUIDE.pdf).
+
 ## Project structure
 
 ```text
