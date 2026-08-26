@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Restaurant QR SaaS",
-    "slug": "restaurant-qr-saas",
+    "name": "Ordino",
+    "slug": "ordino",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
