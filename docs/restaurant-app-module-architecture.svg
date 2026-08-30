@@ -1,0 +1,76 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="760" rx="36" fill="#FFF8F3"/>
+  <text x="64" y="76" fill="#111827" font-family="Poppins, Inter, Arial, sans-serif" font-size="34" font-weight="500">Ordino Restaurant App Architecture</text>
+  <text x="64" y="112" fill="#667085" font-family="Poppins, Inter, Arial, sans-serif" font-size="17" font-weight="400">Modules feature-based rahenge. Role + permissions decide karega kisko kya dikhega.</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2L10 6L2 10" stroke="#FF6A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#D86B2B" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect x="64" y="174" width="270" height="104" rx="28" fill="#111827" filter="url(#shadow)"/>
+  <circle cx="112" cy="226" r="25" fill="#FF6A1A"/>
+  <text x="154" y="218" fill="#FFFFFF" font-family="Poppins, Inter, Arial, sans-serif" font-size="24" font-weight="500">Restaurant App</text>
+  <text x="154" y="248" fill="#A7B0C0" font-family="Poppins, Inter, Arial, sans-serif" font-size="14">Current codebase</text>
+
+  <line x1="334" y1="226" x2="446" y2="226" stroke="#FF6A1A" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="454" y="158" width="330" height="136" rx="32" fill="#FFFFFF" stroke="#FFE1CA" stroke-width="2" filter="url(#shadow)"/>
+  <text x="496" y="214" fill="#111827" font-family="Poppins, Inter, Arial, sans-serif" font-size="25" font-weight="500">Same App Shell</text>
+  <text x="496" y="247" fill="#667085" font-family="Poppins, Inter, Arial, sans-serif" font-size="15">Sidebar, topbar, layout, logout</text>
+
+  <line x1="784" y1="226" x2="902" y2="226" stroke="#FF6A1A" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="912" y="174" width="304" height="104" rx="28" fill="#FF6A1A" filter="url(#shadow)"/>
+  <text x="956" y="218" fill="#FFFFFF" font-family="Poppins, Inter, Arial, sans-serif" font-size="24" font-weight="500">Feature Modules</text>
+  <text x="956" y="248" fill="#FFE7D8" font-family="Poppins, Inter, Arial, sans-serif" font-size="14">Built once, permission controlled</text>
+
+  <line x1="1064" y1="278" x2="1064" y2="348" stroke="#FF6A1A" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g font-family="Poppins, Inter, Arial, sans-serif">
+    <rect x="92" y="382" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="122" y="426" fill="#111827" font-size="18" font-weight="500">Dashboard</text>
+
+    <rect x="338" y="382" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="392" y="426" fill="#111827" font-size="18" font-weight="500">Menu</text>
+
+    <rect x="584" y="382" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="626" y="426" fill="#111827" font-size="18" font-weight="500">Tables &amp; QR</text>
+
+    <rect x="830" y="382" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="884" y="426" fill="#111827" font-size="18" font-weight="500">Orders</text>
+
+    <rect x="1076" y="382" width="112" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="1100" y="426" fill="#111827" font-size="18" font-weight="500">Kitchen</text>
+
+    <rect x="92" y="486" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="132" y="530" fill="#111827" font-size="18" font-weight="500">Waiter</text>
+
+    <rect x="338" y="486" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="380" y="530" fill="#111827" font-size="18" font-weight="500">Billing / POS</text>
+
+    <rect x="584" y="486" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="628" y="530" fill="#111827" font-size="18" font-weight="500">Payments</text>
+
+    <rect x="830" y="486" width="220" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="866" y="530" fill="#111827" font-size="18" font-weight="500">Customers / CRM</text>
+
+    <rect x="1076" y="486" width="112" height="72" rx="20" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="1092" y="530" fill="#111827" font-size="18" font-weight="500">Analytics</text>
+
+    <rect x="522" y="610" width="236" height="72" rx="20" fill="#111827"/>
+    <text x="575" y="654" fill="#FFFFFF" font-size="18" font-weight="500">Settings</text>
+  </g>
+
+  <rect x="454" y="52" width="330" height="68" rx="22" fill="#FFF0E6" stroke="#FFD5BB"/>
+  <text x="492" y="94" fill="#E9540C" font-family="Poppins, Inter, Arial, sans-serif" font-size="17" font-weight="500">Role + Permissions controls access</text>
+  <line x1="619" y1="120" x2="619" y2="156" stroke="#FF6A1A" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="876" y="610" width="300" height="72" rx="20" fill="#F0FFF5" stroke="#C9F2D8"/>
+  <text x="910" y="638" fill="#287A52" font-family="Poppins, Inter, Arial, sans-serif" font-size="16" font-weight="500">Customer QR page separate</text>
+  <text x="910" y="664" fill="#667085" font-family="Poppins, Inter, Arial, sans-serif" font-size="13">Public menu, cart, place order</text>
+</svg>

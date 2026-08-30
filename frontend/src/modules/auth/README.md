@@ -1,16 +1,13 @@
 # Frontend authentication module
 
-This folder contains the shared authentication frontend for web, Android, and iOS.
+The auth feature is intentionally compact. It is shared by web, Android, and iOS
+without splitting every visual fragment into a separate file.
 
-- `api/`: Backend API contract and future HTTP calls.
-- `components/`: Reusable authentication UI.
-- `hooks/`: Form state and UI actions.
-- `screens/`: Complete authentication screens.
-- `state/`: Session state and future auth actions.
-- `theme/`: Authentication colors shared by components.
-- `types/`: Request, response, and user types.
-- `utils/`: Small reusable validation helpers.
-- `index.ts`: Public exports for the module.
+- `screens/AuthScreen.tsx`: login, forgot password, form state, validation, and one-use UI pieces.
+- `screens/auth-screen.styles.ts`: responsive login styles.
+- `api/`, `state/`, `types/`: contracts and non-visual logic for future backend wiring.
+- `index.ts`: the public module boundary.
 
-Pawan can build the UI here once and use it on every Expo platform. Database credentials
-must never be added to the frontend.
+Global color, typography, and radius tokens live in `src/theme/tokens.ts`. Create
+a new component only when it is reused, independently complex, or has meaningful
+behavior. Database credentials must never be added to the frontend.

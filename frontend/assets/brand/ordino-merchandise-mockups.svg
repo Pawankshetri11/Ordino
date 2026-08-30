@@ -1,0 +1,81 @@
+<svg width="1800" height="1200" viewBox="0 0 1800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1800" height="1200" fill="#FFFDFC"/>
+  <text x="100" y="108" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="58" font-weight="400">Ordino Merchandise Mockups</text>
+  <text x="104" y="152" fill="#7A8290" font-family="Poppins, Inter, Arial, sans-serif" font-size="24" font-weight="300">Polo, t-shirt, hoodie, and sweatshirt with the new brand mark</text>
+
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="145%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#111827" flood-opacity="0.13"/>
+    </filter>
+    <linearGradient id="navyFabric" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#182234"/>
+      <stop offset="1" stop-color="#0E1524"/>
+    </linearGradient>
+    <linearGradient id="creamFabric" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFF7EF"/>
+      <stop offset="1" stop-color="#F2E2D2"/>
+    </linearGradient>
+    <linearGradient id="orangeFabric" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FF8438"/>
+      <stop offset="1" stop-color="#E9540C"/>
+    </linearGradient>
+  </defs>
+
+  <g id="tiny-logo">
+    <rect width="54" height="54" rx="16" fill="#FF6A1A"/>
+    <path d="M27 39C33.6274 39 39 33.6274 39 27C39 20.3726 33.6274 15 27 15C20.3726 15 15 20.3726 15 27C15 33.6274 20.3726 39 27 39Z" stroke="#FFFFFF" stroke-width="6"/>
+    <path d="M38 13L45 6" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M44 18L50 18" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(98 220)" filter="url(#shadow)">
+    <rect width="770" height="410" rx="28" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="42" y="64" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="31" font-weight="400">Polo Shirt</text>
+    <text x="42" y="98" fill="#7A8290" font-family="Poppins, Inter, Arial, sans-serif" font-size="17" font-weight="300">navy fabric, chest embroidery</text>
+    <g transform="translate(250 72)">
+      <path d="M158 20L235 47L305 22L398 76L350 160L322 143L336 320H76L91 143L62 160L15 76L108 22L178 48L158 20Z" fill="url(#navyFabric)"/>
+      <path d="M159 20L235 102L304 22L322 75L274 132H198L142 72L159 20Z" fill="#FFF0E6"/>
+      <path d="M198 132H274L256 320H218L198 132Z" fill="#111827" fill-opacity="0.25"/>
+      <path d="M142 72L198 132M322 75L274 132" stroke="#E8E1DB" stroke-width="3"/>
+      <g transform="translate(183 178) scale(0.72)"><use href="#tiny-logo"/></g>
+    </g>
+  </g>
+
+  <g transform="translate(932 220)" filter="url(#shadow)">
+    <rect width="770" height="410" rx="28" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="42" y="64" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="31" font-weight="400">T-Shirt</text>
+    <text x="42" y="98" fill="#7A8290" font-family="Poppins, Inter, Arial, sans-serif" font-size="17" font-weight="300">cream base, orange mark</text>
+    <g transform="translate(250 75)">
+      <path d="M150 20H284L350 56L405 132L328 184L304 148L323 318H110L129 148L105 184L28 132L84 56L150 20Z" fill="url(#creamFabric)" stroke="#E8E1DB" stroke-width="3"/>
+      <path d="M179 20C185 49 205 66 217 66C229 66 249 49 255 20" stroke="#D8CEC5" stroke-width="5" stroke-linecap="round"/>
+      <g transform="translate(173 172) scale(0.76)"><use href="#tiny-logo"/></g>
+      <text x="239" y="208" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="35" font-weight="400">Ordino</text>
+    </g>
+  </g>
+
+  <g transform="translate(98 690)" filter="url(#shadow)">
+    <rect width="770" height="410" rx="28" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="42" y="64" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="31" font-weight="400">Hoodie</text>
+    <text x="42" y="98" fill="#7A8290" font-family="Poppins, Inter, Arial, sans-serif" font-size="17" font-weight="300">orange hero piece, small chest mark</text>
+    <g transform="translate(232 48)">
+      <path d="M205 20C250 20 291 49 309 92L373 116L424 222L348 259L323 210L336 344H74L88 210L62 259L-13 222L38 116L101 92C120 49 160 20 205 20Z" fill="url(#orangeFabric)"/>
+      <path d="M154 67C169 43 190 31 205 31C221 31 242 43 257 67C244 111 225 134 205 134C186 134 167 111 154 67Z" fill="#111827" fill-opacity="0.18"/>
+      <path d="M151 70C160 122 179 154 205 164C231 154 250 122 259 70" stroke="#FFF0E6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M186 151V219M224 151V219" stroke="#FFF0E6" stroke-width="5" stroke-linecap="round"/>
+      <path d="M128 244H282" stroke="#E9540C" stroke-width="5" stroke-linecap="round"/>
+      <g transform="translate(160 202) scale(0.72)"><use href="#tiny-logo"/></g>
+    </g>
+  </g>
+
+  <g transform="translate(932 690)" filter="url(#shadow)">
+    <rect width="770" height="410" rx="28" fill="#FFFFFF" stroke="#E8E1DB"/>
+    <text x="42" y="64" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="31" font-weight="400">Sweatshirt</text>
+    <text x="42" y="98" fill="#7A8290" font-family="Poppins, Inter, Arial, sans-serif" font-size="17" font-weight="300">charcoal fleece, clean wordmark</text>
+    <g transform="translate(248 72)">
+      <path d="M149 18H285L360 64L420 191L338 226L309 163L328 319H107L126 163L97 226L16 191L75 64L149 18Z" fill="#2B3445"/>
+      <path d="M149 18C161 54 186 73 217 73C248 73 273 54 285 18" stroke="#111827" stroke-opacity="0.32" stroke-width="6"/>
+      <g transform="translate(138 168) scale(0.74)"><use href="#tiny-logo"/></g>
+      <text x="200" y="203" fill="#FFFFFF" font-family="Poppins, Inter, Arial, sans-serif" font-size="36" font-weight="400">Ordino</text>
+    </g>
+  </g>
+</svg>

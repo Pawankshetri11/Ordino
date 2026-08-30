@@ -1,0 +1,13 @@
+<svg width="1180" height="360" viewBox="0 0 1180 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1180" height="360" rx="0" fill="#FFFDFC"/>
+  <g transform="translate(88 72)">
+    <rect width="216" height="216" rx="72" fill="#FF6A1A"/>
+    <path d="M108 157C135.062 157 157 135.062 157 108C157 80.938 135.062 59 108 59C80.938 59 59 80.938 59 108C59 135.062 80.938 157 108 157Z" stroke="#FFFFFF" stroke-width="23"/>
+    <path d="M108 84C121.255 84 132 94.745 132 108C132 121.255 121.255 132 108 132C94.745 132 84 121.255 84 108C84 94.745 94.745 84 108 84Z" fill="#FFFFFF" fill-opacity="0.18"/>
+    <path d="M153 49L174 28" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+    <path d="M173 60L192 60" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+    <path d="M154 167L173 186" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <text x="356" y="178" fill="#1C2535" font-family="Poppins, Inter, Arial, sans-serif" font-size="112" font-weight="500" letter-spacing="0">Ordino</text>
+  <text x="363" y="231" fill="#7A8290" font-family="Poppins, Inter, Arial, sans-serif" font-size="28" font-weight="300" letter-spacing="7">RESTAURANT WORKSPACE</text>
+</svg>

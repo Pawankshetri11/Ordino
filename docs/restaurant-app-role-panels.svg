@@ -1,0 +1,64 @@
+<svg width="1280" height="820" viewBox="0 0 1280 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="820" rx="36" fill="#FFFDFC"/>
+  <text x="64" y="76" fill="#111827" font-family="Poppins, Inter, Arial, sans-serif" font-size="34" font-weight="500">Restaurant App Users &amp; Panels</text>
+  <text x="64" y="112" fill="#667085" font-family="Poppins, Inter, Arial, sans-serif" font-size="17">Same dashboard shell. Role ke hisaab se panel/widgets/modules visible honge.</text>
+
+  <defs>
+    <marker id="arrow2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2L10 6L2 10" stroke="#FF6A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#1C2535" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect x="490" y="150" width="300" height="104" rx="28" fill="#111827" filter="url(#shadow2)"/>
+  <text x="562" y="195" fill="#FFFFFF" font-family="Poppins, Inter, Arial, sans-serif" font-size="24" font-weight="500">Login</text>
+  <text x="544" y="226" fill="#A7B0C0" font-family="Poppins, Inter, Arial, sans-serif" font-size="15">Identify user role</text>
+
+  <line x1="640" y1="254" x2="640" y2="316" stroke="#FF6A1A" stroke-width="3" marker-end="url(#arrow2)"/>
+
+  <rect x="454" y="324" width="372" height="96" rx="28" fill="#FFF0E6" stroke="#FFD5BB" stroke-width="2" filter="url(#shadow2)"/>
+  <text x="516" y="366" fill="#E9540C" font-family="Poppins, Inter, Arial, sans-serif" font-size="22" font-weight="500">Role + Permission Check</text>
+  <text x="540" y="394" fill="#667085" font-family="Poppins, Inter, Arial, sans-serif" font-size="14">Backend + frontend both enforce</text>
+
+  <line x1="454" y1="372" x2="250" y2="472" stroke="#FF6A1A" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <line x1="530" y1="420" x2="430" y2="472" stroke="#FF6A1A" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <line x1="640" y1="420" x2="640" y2="472" stroke="#FF6A1A" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <line x1="750" y1="420" x2="850" y2="472" stroke="#FF6A1A" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <line x1="826" y1="372" x2="1030" y2="472" stroke="#FF6A1A" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <g font-family="Poppins, Inter, Arial, sans-serif">
+    <rect x="74" y="486" width="240" height="178" rx="28" fill="#FFFFFF" stroke="#E8E1DB" filter="url(#shadow2)"/>
+    <text x="110" y="526" fill="#111827" font-size="22" font-weight="500">Owner Panel</text>
+    <text x="110" y="560" fill="#667085" font-size="14">All modules</text>
+    <text x="110" y="588" fill="#667085" font-size="14">Staff &amp; permissions</text>
+    <text x="110" y="616" fill="#667085" font-size="14">Analytics + settings</text>
+
+    <rect x="342" y="486" width="240" height="178" rx="28" fill="#FFFFFF" stroke="#E8E1DB" filter="url(#shadow2)"/>
+    <text x="378" y="526" fill="#111827" font-size="22" font-weight="500">Manager Panel</text>
+    <text x="378" y="560" fill="#667085" font-size="14">Orders + tables</text>
+    <text x="378" y="588" fill="#667085" font-size="14">Kitchen monitor</text>
+    <text x="378" y="616" fill="#667085" font-size="14">Menu availability</text>
+
+    <rect x="610" y="486" width="240" height="178" rx="28" fill="#FFFFFF" stroke="#E8E1DB" filter="url(#shadow2)"/>
+    <text x="646" y="526" fill="#111827" font-size="22" font-weight="500">Cashier Panel</text>
+    <text x="646" y="560" fill="#667085" font-size="14">Billing / POS</text>
+    <text x="646" y="588" fill="#667085" font-size="14">Payments</text>
+    <text x="646" y="616" fill="#667085" font-size="14">Receipt print</text>
+
+    <rect x="878" y="486" width="240" height="178" rx="28" fill="#FFFFFF" stroke="#E8E1DB" filter="url(#shadow2)"/>
+    <text x="914" y="526" fill="#111827" font-size="22" font-weight="500">Waiter Panel</text>
+    <text x="914" y="560" fill="#667085" font-size="14">Assigned tables</text>
+    <text x="914" y="588" fill="#667085" font-size="14">Create orders</text>
+    <text x="914" y="616" fill="#667085" font-size="14">Mark served</text>
+
+    <rect x="476" y="694" width="240" height="92" rx="26" fill="#111827" filter="url(#shadow2)"/>
+    <text x="512" y="734" fill="#FFFFFF" font-size="22" font-weight="500">Kitchen Panel</text>
+    <text x="512" y="762" fill="#A7B0C0" font-size="14">New / preparing / ready</text>
+
+    <rect x="744" y="694" width="300" height="92" rx="26" fill="#F0FFF5" stroke="#C9F2D8"/>
+    <text x="780" y="734" fill="#287A52" font-size="22" font-weight="500">Customer QR Page</text>
+    <text x="780" y="762" fill="#667085" font-size="14">Public ordering, not staff dashboard</text>
+  </g>
+</svg>

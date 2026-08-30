@@ -6,12 +6,6 @@ export {
   type AuthStatus,
 } from './state/auth.state'
 export type {
-  AuthMode,
-  AuthFormErrors,
-  AuthFormField,
-  AuthFormValues,
-} from './types/auth-form.types'
-export type {
   AuthSession,
   AuthUser,
   LoginRequest,
